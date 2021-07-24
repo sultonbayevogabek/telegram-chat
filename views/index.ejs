@@ -1,0 +1,110 @@
+<%- include('partials/header') %>
+
+<div class="app">
+    <div class="app__header">
+        <div class="app-name">Telegram Desktop</div>
+        <div class="app-options">
+            <div class="app-options__item" title="Oynani pastga tushirish">
+                <img id="roll-up" src="img/icons/roll-up.svg" alt="oynani berkitish">
+            </div>
+            <div class="app-options__item" title="Oyna o`lchamini o`zgartirish">
+                <img id="rectangle" src="img/icons/rectangle.svg" alt="oyna hajmini kichiklashtirish">
+            </div>
+            <div class="app-options__item" title="Dasturni yopish">
+                <img id="close" src="img/icons/close.svg" alt="oynani yopish">
+            </div>
+        </div>
+    </div>
+    <div class="app__main">
+        <aside class="app__sidebar">
+            <header class="app__sidebar--header">
+                <img id="menu-bar" src="img/icons/hamburg.svg" alt="" width="33" height="28">
+                <input id="search-input" type="text" placeholder="Search">
+            </header>
+            <main class="chat-list">
+                <ul class="chat-list__ul">
+                    <li class="chat-list__li active-contact">
+                        <div class="contact-img">
+                            <img src="https://i.pravatar.cc/60?img=3" width="60" height="60">
+                            <div class="active-indicator"></div>
+                        </div>
+                        <div class="chat-info">
+                            <h3 class="contact-name">Og'abek Sultonbayev</h3>
+                            <div class="last-message">Nimadir</div>
+                        </div>
+                    </li>
+                </ul>
+            </main>
+        </aside>
+        <section class="chat-section">
+            <header class="chat-section__header">
+                <h1>Fulfil Education - Og'abek Sultonbayev - Group chat</h1>
+            </header>
+            <main class="chat-section__main">
+                <ul class="messages-list">
+                    <li class="messages__item">
+                        <div class="message-owner-img">
+                            <img src="https://i.pravatar.cc/60?img=4" alt="">
+                        </div>
+                        <div class="message-text received">
+                            <p>Xabar matni</p>
+                            <time class="message-time">12:05</time>
+                        </div>
+                    </li>
+                    <li class="messages__item">
+                        <div class="message-owner-img">
+                            <img src="https://i.pravatar.cc/60?img=4" alt="">
+                        </div>
+                        <div class="message-text received">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse dolores corrupti ullam
+                                reprehenderit earum, facilis nemo. Sint similique sit blanditiis eligendi! Neque animi,
+                                cumque error, natus accusantium, saepe ipsam magnam aspernatur voluptatum voluptatem
+                                reiciendis tempora non temporibus nobis laborum quos. Culpa natus ipsa nam molestias?
+                                Vel iste accusantium deleniti consectetur reprehenderit ipsa consequatur! Incidunt quia
+                                culpa libero. Nostrum, harum cum illo tenetur eaque, quis, ea facilis vero ducimus ipsam
+                                corrupti consectetur esse at. Fugiat commodi id odio culpa nobis earum temporibus atque
+                                provident tenetur fuga? Laudantium eveniet ipsum provident sapiente maxime optio quo
+                                voluptatum excepturi, qui mollitia harum iusto quasi!</p>
+                            <time class="message-time">12:05</time>
+                        </div>
+                    </li>
+                    <li class="messages__item">
+                        <div class="message-owner-img">
+                            <img src="https://i.pravatar.cc/60?img=4" alt="">
+                        </div>
+                        <div class="message-text received">
+                            <p>Xabar matni</p>
+                            <time class="message-time">12:05</time>
+                        </div>
+                    </li>
+                </ul>
+                <audio id="chat-sound">
+                    <source src="media/chatsound.mp3">
+                </audio>
+            </main>
+            <footer class="chat-section__footer">
+                <form class="chat-form">
+                    <div class="microphone-smile">
+                        <div title="Ovozli xabar jo`natish">
+                            <img src="img/icons/microphone.svg" alt="">
+                        </div>
+                        <div title="Emodjilar ro`yxati">
+                            <img src="img/icons/smile.svg" alt="">
+                        </div>
+                    </div>
+                    <textarea id="typing-field" placeholder="Type here..."></textarea>
+                    <button title="Xabarni jo`natish" type="submit">
+                        <img src="img/icons/send.svg" alt="">
+                    </button>
+                </form>
+            </footer>
+        </section>
+    </div>
+    <div class="dark-layer-user-info hide">
+        <div class="user-info">
+
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<div class="login">
+    <div class="login__form">
+        <h1>Your phone number</h1>
+        <p>Please confirm your country code and enter your mobile phone number</p>
+        <form id="login-form">
+            <div class="custom-select" style="width: 100%">
+                <select id="country-select">
+                    <option value="0">Country</option>
+                </select>
+            </div>
+            <div class="phone">
+                <div class="phone__code"></div>
+                <input class="phone__number" type="number" required maxlength="9" min="100000000"
+                       placeholder="-- -------" max="999999999">
+            </div>
+            <button class="login__btn">Next</button>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
