@@ -27,7 +27,6 @@
                         <li class="chat-list__li active-contact" id="<%= user.userId %>">
                             <div class="contact-img">
                                 <img src="<%= user.avatar %>">
-                                <div class="active-indicator"></div>
                             </div>
                             <div class="chat-info">
                                 <h3 class="contact-name"><%= user.firstName[0].toUpperCase() + user.firstName.substring(1).toLowerCase() + ' ' + user.lastName[0].toUpperCase() + user.lastName.substring(1).toLowerCase() %></h3>
@@ -49,7 +48,7 @@
                             <% if (user.id === message['user.userId']) { %>
                                 <div class="message-text send">
                                     <p><%= message.messageText %></p>
-                                    <time class="message-time">12:05</time>
+                                    <time class="message-time"><%= message.createdAt.getHours() %> : <%= message.createdAt.getMinutes() %></time>
                                 </div>
                                 <div class="message-owner-img">
                                     <img src="<%= message['user.avatar'] %>" alt="">
@@ -60,7 +59,7 @@
                                 </div>
                                 <div class="message-text received">
                                     <p><%= message.messageText %></p>
-                                    <time class="message-time">12:05</time>
+                                    <time class="message-time"><%= message.createdAt.getHours() %> : <%= message.createdAt.getMinutes() %></time>
                                 </div>
                             <% } %>
                         </li>

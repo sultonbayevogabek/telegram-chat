@@ -10,15 +10,32 @@ export default function () {
       chatList = selectOne('.messages-list'),
       contactList = selectOne('.chat-list__ul')
 
-   chatForm.addEventListener('submit', e => {
-      e.preventDefault()
+   chatList.scrollTop = chatList.scrollHeight
 
-      let avatar = "<%= user.avatar %>"
-      chatList.innerHTML += `
+   function addZero(number) {
+      if (number < 10) {
+         return `0${number}`
+      }
+      return number
+   }
+
+   function currentTime() {
+      return `${addZero(new Date().getHours())} : ${addZero(new Date().getMinutes())}`
+   }
+
+   function fullName(firstName, lastName) {
+      return `${firstName[0].toUpperCase()}${firstName.substring(1).toLowerCase()} ${lastName[0].toUpperCase()}${lastName.substring(1).toLowerCase()}`
+   }
+
+   function chatFormSubmit() {
+      chatForm.addEventListener('submit', e => {
+         e.preventDefault()
+
+         chatList.innerHTML += `
          <li class="messages__item">
            <div class="message-text send">
                <p>${typingField.value.trim()}</p>
-               <time class="message-time">12:05</time>
+               <time class="message-time">${currentTime()}</time>
            </div>
            <div class="message-owner-img">
                <img src="${sendMessageBtn.getAttribute('data-avatar')}" alt="">
@@ -26,13 +43,18 @@ export default function () {
          </li>
       `
 
-      socket.emit('new-message', {
-         message: typingField.value,
-         userId: userIdInput.value
-      })
+         socket.emit('new-message', {
+            message: typingField.value,
+            userId: userIdInput.value
+         })
 
-      e.target.reset()
-   })
+         e.target.reset()
+
+         chatList.scrollTop = chatList.scrollHeight
+      })
+   }
+
+   chatFormSubmit()
 
    socket.on('new-message', data => {
       chatList.innerHTML += `
@@ -42,10 +64,11 @@ export default function () {
            </div>
            <div class="message-text received">
                <p>${data.message.messageText}</p>
-               <time class="message-time">12:05</time>
+               <time class="message-time">${currentTime()}</time>
            </div>
          </li>
        `
+      chatList.scrollTop = chatList.scrollHeight
    })
 
    socket.on('login', data => {
@@ -56,7 +79,7 @@ export default function () {
                  <div class="active-indicator"></div>
              </div>
              <div class="chat-info">
-                 <h3 class="contact-name">${data.user.firstName}</h3>
+                 <h3 class="contact-name">${fullName(data.user.firstName, data.user.lastName)}</h3>
                  <div class="last-message"><strong>role: </strong>${data.user.role}</div>
              </div>
          </li>

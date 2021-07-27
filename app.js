@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const db = require('./modules/postgres')
 const { user } = require('./middlewares/auth-middleware')
 const app = express()
-const {Server} = require('socket.io')
+const { Server } = require('socket.io')
 const server = http.createServer(app)
 const io = new Server(server)
 
@@ -53,7 +53,6 @@ io.on('connection', async socket => {
    })
 
    socket.on('left-real', (data) => {
-      console.log(data)
       socket.broadcast.emit('left-real', data)
    })
 
@@ -71,4 +70,4 @@ fs.readdir(path.join(__dirname, 'routes'), (err, files) => {
    })
 })
 
-module.exports = {app, server}
+module.exports = { app, server }

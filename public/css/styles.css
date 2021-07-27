@@ -173,21 +173,11 @@ button:focus {
   height: 60px;
   margin-right: 20px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   overflow: hidden;
 }
 .contact-img img {
-  width: 100%;
-}
-.contact-img .active-indicator {
-  position: absolute;
-  top: 5px;
-  right: 2px;
-  display: none;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #8DDF84;
+  width: 110%;
 }
 
 .active-contact .contact-img {
@@ -335,6 +325,7 @@ button[type=submit] {
   height: 100%;
   width: 100%;
   overflow: auto;
+  padding-top: 24px;
 }
 .messages-list::-webkit-scrollbar {
   width: 4px;
@@ -409,6 +400,10 @@ button[type=submit] {
 }
 .send time {
   left: 0;
+}
+
+.send + .message-owner-img {
+  margin-right: 20px;
 }
 
 .received {
