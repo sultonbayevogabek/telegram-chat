@@ -1,8 +1,16 @@
+<%
+    function addZero(number) {
+        if (number < 10) {
+            return `0${number}`
+        }
+        return number
+    }
+%>
 <%- include('partials/header') %>
 
 <div class="app">
     <div class="app__header">
-        <div class="app-name">Telegram Desktop</div>
+        <div class="app-name">Telegram Desktop | Asadbek Zoirov | Og'abek Sultonbayev</div>
         <div class="app-options">
             <div class="app-options__item" title="Oynani pastga tushirish">
                 <img id="roll-up" src="img/icons/roll-up.svg" alt="oynani berkitish">
@@ -24,7 +32,7 @@
             <main class="chat-list">
                 <ul class="chat-list__ul">
                     <% users.forEach(user => { %>
-                        <li class="chat-list__li active-contact" id="<%= user.userId %>">
+                        <li class="chat-list__li" id="<%= user.userId %>">
                             <div class="contact-img">
                                 <img src="<%= user.avatar %>">
                             </div>
@@ -39,7 +47,7 @@
         </aside>
         <section class="chat-section">
             <header class="chat-section__header">
-                <h1>Fulfil Education - Og'abek Sultonbayev - Group chat</h1>
+                <h1>Fulfil Education - Group chat</h1>
             </header>
             <main class="chat-section__main">
                 <ul class="messages-list">
@@ -48,7 +56,8 @@
                             <% if (user.id === message['user.userId']) { %>
                                 <div class="message-text send">
                                     <p><%= message.messageText %></p>
-                                    <time class="message-time"><%= message.createdAt.getHours() %> : <%= message.createdAt.getMinutes() %></time>
+                                    <time class="message-time"><%= addZero(message.createdAt.getHours()) %>
+                                        : <%= addZero(message.createdAt.getMinutes()) %></time>
                                 </div>
                                 <div class="message-owner-img">
                                     <img src="<%= message['user.avatar'] %>" alt="">
@@ -59,7 +68,8 @@
                                 </div>
                                 <div class="message-text received">
                                     <p><%= message.messageText %></p>
-                                    <time class="message-time"><%= message.createdAt.getHours() %> : <%= message.createdAt.getMinutes() %></time>
+                                    <time class="message-time"><%= addZero(message.createdAt.getHours()) %>
+                                        : <%= addZero(message.createdAt.getMinutes()) %></time>
                                 </div>
                             <% } %>
                         </li>
