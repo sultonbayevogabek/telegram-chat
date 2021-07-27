@@ -23,16 +23,18 @@
             </header>
             <main class="chat-list">
                 <ul class="chat-list__ul">
-                    <li class="chat-list__li active-contact">
-                        <div class="contact-img">
-                            <img src="https://i.pravatar.cc/60?img=3" width="60" height="60">
-                            <div class="active-indicator"></div>
-                        </div>
-                        <div class="chat-info">
-                            <h3 class="contact-name">Og'abek Sultonbayev</h3>
-                            <div class="last-message">Nimadir</div>
-                        </div>
-                    </li>
+                    <% users.forEach(user => { %>
+                        <li class="chat-list__li active-contact" id="<%= user.userId %>">
+                            <div class="contact-img">
+                                <img src="<%= user.avatar %>">
+                                <div class="active-indicator"></div>
+                            </div>
+                            <div class="chat-info">
+                                <h3 class="contact-name"><%= user.firstName[0].toUpperCase() + user.firstName.substring(1).toLowerCase() + ' ' + user.lastName[0].toUpperCase() + user.lastName.substring(1).toLowerCase() %></h3>
+                                <div class="last-message"><strong>role: </strong><%= user.role %></div>
+                            </div>
+                        </li>
+                    <% }) %>
                 </ul>
             </main>
         </aside>
@@ -42,48 +44,34 @@
             </header>
             <main class="chat-section__main">
                 <ul class="messages-list">
-                    <li class="messages__item">
-                        <div class="message-owner-img">
-                            <img src="https://i.pravatar.cc/60?img=4" alt="">
-                        </div>
-                        <div class="message-text received">
-                            <p>Xabar matni</p>
-                            <time class="message-time">12:05</time>
-                        </div>
-                    </li>
-                    <li class="messages__item">
-                        <div class="message-owner-img">
-                            <img src="https://i.pravatar.cc/60?img=4" alt="">
-                        </div>
-                        <div class="message-text received">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse dolores corrupti ullam
-                                reprehenderit earum, facilis nemo. Sint similique sit blanditiis eligendi! Neque animi,
-                                cumque error, natus accusantium, saepe ipsam magnam aspernatur voluptatum voluptatem
-                                reiciendis tempora non temporibus nobis laborum quos. Culpa natus ipsa nam molestias?
-                                Vel iste accusantium deleniti consectetur reprehenderit ipsa consequatur! Incidunt quia
-                                culpa libero. Nostrum, harum cum illo tenetur eaque, quis, ea facilis vero ducimus ipsam
-                                corrupti consectetur esse at. Fugiat commodi id odio culpa nobis earum temporibus atque
-                                provident tenetur fuga? Laudantium eveniet ipsum provident sapiente maxime optio quo
-                                voluptatum excepturi, qui mollitia harum iusto quasi!</p>
-                            <time class="message-time">12:05</time>
-                        </div>
-                    </li>
-                    <li class="messages__item">
-                        <div class="message-owner-img">
-                            <img src="https://i.pravatar.cc/60?img=4" alt="">
-                        </div>
-                        <div class="message-text received">
-                            <p>Xabar matni</p>
-                            <time class="message-time">12:05</time>
-                        </div>
-                    </li>
+                    <% messages.forEach(message => { %>
+                        <li class="messages__item">
+                            <% if (user.id === message['user.userId']) { %>
+                                <div class="message-text send">
+                                    <p><%= message.messageText %></p>
+                                    <time class="message-time">12:05</time>
+                                </div>
+                                <div class="message-owner-img">
+                                    <img src="<%= message['user.avatar'] %>" alt="">
+                                </div>
+                            <% } else { %>
+                                <div class="message-owner-img">
+                                    <img src="<%= message['user.avatar'] %>" alt="">
+                                </div>
+                                <div class="message-text received">
+                                    <p><%= message.messageText %></p>
+                                    <time class="message-time">12:05</time>
+                                </div>
+                            <% } %>
+                        </li>
+                    <% }) %>
                 </ul>
                 <audio id="chat-sound">
                     <source src="media/chatsound.mp3">
                 </audio>
             </main>
             <footer class="chat-section__footer">
-                <form class="chat-form">
+                <form class="chat-form" id="chat-form">
                     <div class="microphone-smile">
                         <div title="Ovozli xabar jo`natish">
                             <img src="img/icons/microphone.svg" alt="">
@@ -92,8 +80,9 @@
                             <img src="img/icons/smile.svg" alt="">
                         </div>
                     </div>
-                    <textarea id="typing-field" placeholder="Type here..."></textarea>
-                    <button title="Xabarni jo`natish" type="submit">
+                    <textarea id="typing-field" placeholder="Type here..." required minlength="1"></textarea>
+                    <input type="hidden" name="userId" value="<%= user.id %>">
+                    <button id="send-message" data-avatar="<%= user.avatar %>" title="Xabarni jo`natish" type="submit">
                         <img src="img/icons/send.svg" alt="">
                     </button>
                 </form>

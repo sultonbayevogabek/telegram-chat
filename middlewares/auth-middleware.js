@@ -20,7 +20,7 @@ const user = async (req, res, next) => {
    if (token) {
       const { email } = verifyToken(token)
 
-      const candidate = await req.db.findOne({
+      const candidate = await req.db.users.findOne({
          where: { email }
       })
 
@@ -32,6 +32,8 @@ const user = async (req, res, next) => {
             email: candidate.email,
             avatar: candidate.avatar
          }
+      } else {
+         res.clearCookie('token')
       }
    }
 

@@ -1,22 +1,62 @@
 <%- include('partials/header') %>
 
-<div class="login">
-    <div class="login__form">
-        <h1>Your phone number</h1>
-        <p>Please confirm your country code and enter your mobile phone number</p>
-        <form id="login-form">
-            <div class="custom-select" style="width: 100%">
-                <select id="country-select">
-                    <option value="0">Country</option>
-                </select>
+<div class="auth">
+    <div class="auth__card">
+        <div class="auth__header">
+            <div class="auth__header__item auth__header__item--active">
+                SignIn
             </div>
-            <div class="phone">
-                <div class="phone__code"></div>
-                <input class="phone__number" type="number" required maxlength="9" min="100000000"
-                       placeholder="-- -------" max="999999999">
+            <div class="auth__header__item">
+                SignUp
             </div>
-            <button class="login__btn">Next</button>
-        </form>
+        </div>
+        <div class="auth__body">
+            <form class="auth__form auth__form--visible" id="auth-signin">
+                <div id="error-display-signin"></div>
+                <label class="auth__label">
+                    <span>Email:</span>
+                    <input class="auth__input" id="email" type="email" required placeholder="email@gmail.com">
+                </label>
+                <label class="auth__label">
+                    <span>Password:</span>
+                    <input class="auth__input" id="password" type="password" required minlength="6" placeholder="Password">
+                </label>
+                <button class="auth__submit">
+                    SignIn
+                </button>
+            </form>
+            <form class="auth__form" id="auth-signup" novalidate>
+                <div id="error-display-signup"></div>
+                <label class="auth__label">
+                    <div class="avatar">
+                        <div class="avatar-change">
+                            <img src="img/icons/camera.svg" alt="">
+                        </div>
+                        <img src="img/users/default-avatar.jpg" alt="">
+                        <input id="avatar" type="file" accept=".png, .jpg" required>
+                    </div>
+                </label>
+                <label class="auth__label">
+                    <span>First name:</span>
+                    <input class="auth__input" id="first-name" type="text" required placeholder="John" minlength="3">
+                </label>
+                <label class="auth__label">
+                    <span>Last name:</span>
+                    <input class="auth__input" id="last-name" type="text" required placeholder="Doe" minlength="3">
+                </label>
+                <label class="auth__label">
+                    <span>Email:</span>
+                    <input class="auth__input" id="signup-email" type="email" required placeholder="email@gmail.com">
+                </label>
+                <label class="auth__label">
+                    <span>Password:</span>
+                    <input class="auth__input" id="signup-password" type="password" required minlength="6" placeholder="Password">
+                </label>
+                <button class="auth__submit">
+                    SignUp
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 

@@ -3,6 +3,7 @@
     <words>
       <w>bcrypt</w>
       <w>sequelize</w>
+      <w>tlds</w>
     </words>
   </dictionary>
 </component>

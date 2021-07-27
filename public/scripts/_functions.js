@@ -6,4 +6,8 @@ function selectAll(selector) {
    return document.querySelectorAll(selector)
 }
 
-module.exports = { selectOne, selectAll }
+function clearText(text) {
+   return text.trim().toLowerCase()
+}
+
+module.exports = { selectOne, selectAll, clearText }

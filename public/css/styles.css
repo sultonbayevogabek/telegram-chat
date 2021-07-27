@@ -166,13 +166,18 @@ button:focus {
 
 .contact-img {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 60px;
   height: 60px;
   margin-right: 20px;
   border-radius: 50%;
+  object-fit: contain;
+  overflow: hidden;
 }
 .contact-img img {
-  border-radius: 50%;
+  width: 100%;
 }
 .contact-img .active-indicator {
   position: absolute;
@@ -185,8 +190,8 @@ button:focus {
   background-color: #8DDF84;
 }
 
-.active-contact .active-indicator {
-  display: block;
+.active-contact .contact-img {
+  border: 5px solid #8DDF84;
 }
 
 .contact-name {
@@ -377,6 +382,9 @@ button[type=submit] {
   object-fit: cover;
   overflow: hidden;
 }
+.message-owner-img img {
+  width: 100%;
+}
 
 .message-time {
   position: absolute;
@@ -433,156 +441,6 @@ button[type=submit] {
 
 audio {
   display: none;
-}
-
-.login {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.login__form {
-  width: 300px;
-  padding: 15px;
-}
-.login__form h1 {
-  margin-bottom: 15px;
-  font-size: 20px;
-  font-weight: 500;
-}
-.login__form p {
-  margin-bottom: 60px;
-  font-size: 14px;
-  color: #707070;
-}
-
-.custom-select {
-  position: relative;
-  height: 34px;
-  margin-bottom: 40px;
-}
-
-.custom-select select {
-  display: none;
-}
-
-.select-selected {
-  background-color: transparent;
-  border-bottom: 1px solid #CFD1D3;
-  color: #666;
-}
-
-/* Style the arrow inside the select element: */
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #333 transparent transparent transparent;
-}
-
-/* Point the arrow upwards when the select box is open (active): */
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #333 transparent;
-  top: 7px;
-}
-
-/* style the items (options), including the selected item: */
-.select-items div,
-.select-selected {
-  color: #666666;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-}
-
-/* Style items (options): */
-.select-items {
-  position: absolute;
-  background-color: #ffffff;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  color: #666666;
-  height: 300px;
-  overflow: auto;
-  /* Track */
-  /* Handle */
-}
-.select-items::-webkit-scrollbar {
-  width: 3px;
-}
-.select-items::-webkit-scrollbar-track {
-  background: #CFD1D3;
-}
-.select-items::-webkit-scrollbar-thumb {
-  background: #707070;
-}
-
-/* Hide the items when the select box is closed: */
-.select-hide {
-  display: none;
-}
-
-.select-items div:hover,
-.same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.phone {
-  display: flex;
-  align-items: center;
-  margin-bottom: 60px;
-}
-.phone__code {
-  width: 100px;
-  height: 35px;
-  margin-right: 15px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #CFD1D3;
-}
-.phone__number {
-  flex-grow: 1;
-  border: none;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #CFD1D3;
-  font-size: 16px;
-}
-.phone__number::placeholder {
-  letter-spacing: 3px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-.login__btn {
-  display: block;
-  width: 100%;
-  height: 40px;
-  background-color: #49A1EF;
-  color: #fff;
-  border: none;
-  font-size: 16px;
 }
 
 .dark-layer-user-info {
@@ -662,6 +520,154 @@ input[type=number] {
 
 .hide {
   display: none;
+}
+
+.auth {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  padding-top: 50px;
+  overflow: auto;
+}
+
+.auth__card {
+  width: 455px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.auth__header {
+  display: flex;
+  align-items: center;
+}
+
+.auth__header__item {
+  width: 50%;
+  padding: 20px;
+  border-bottom: 1px solid #F5F5F5;
+  font-size: 16px;
+  font-weight: 500;
+  color: #707070;
+  cursor: pointer;
+}
+.auth__header__item--active {
+  background-color: #F5F5F5;
+}
+
+.auth__body {
+  padding: 20px;
+}
+
+.auth__form {
+  display: none;
+}
+.auth__form--visible {
+  display: block;
+}
+
+.auth__label {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.auth__label span {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #707070;
+}
+
+.auth__input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #CFD1D3;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #707070;
+}
+.auth__input::placeholder {
+  opacity: 0.7;
+}
+
+.auth__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  background-color: #F5F5F5;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #707070;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.auth__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 5px -3px rgba(0, 0, 0, 0.3);
+}
+.auth__submit:focus {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+#photo {
+  display: none;
+}
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  background-color: #F5F5F5;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.avatar img {
+  width: 100%;
+}
+.avatar-change {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: 100%;
+  padding: 60px;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.avatar:hover .avatar-change {
+  top: 0;
+}
+.avatar input {
+  display: none;
+}
+
+.alert {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ffcdd2;
+  background-color: rgba(255, 205, 210, 0.3);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #b71c1c;
 }
 
 /*# sourceMappingURL=styles.css.map */
