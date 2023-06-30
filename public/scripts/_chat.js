@@ -27,6 +27,33 @@ export default function () {
       return `${firstName[0].toUpperCase()}${firstName.substring(1).toLowerCase()} ${lastName[0].toUpperCase()}${lastName.substring(1).toLowerCase()}`
    }
 
+   typingField.addEventListener('keypress', e => {
+      if (e.key === 'Enter') {
+         e.preventDefault()
+
+         chatList.innerHTML += `
+         <li class="messages__item">
+           <div class="message-text send">
+               <p>${typingField.value.trim()}</p>
+               <time class="message-time">${currentTime()}</time>
+           </div>
+           <div class="message-owner-img">
+               <img src="${sendMessageBtn.getAttribute('data-avatar')}" alt="">
+           </div>
+         </li>
+      `
+
+         socket.emit('new-message', {
+            message: typingField.value,
+            userId: userIdInput.value
+         })
+
+         e.target.value = '';
+
+         chatList.scrollTop = chatList.scrollHeight
+      }
+   })
+
    function chatFormSubmit() {
       chatForm.addEventListener('submit', e => {
          e.preventDefault()
